@@ -1,0 +1,7 @@
+program,week,day,exercise,warmup_sets,working_sets,reps,rpe,rir,technique,rest,notes,substitutions
+Example PPL (sample),1,Push,Barbell Bench Press,2,3,6-8,7-8,,,2-3 min,"Shoulder blades pinned, controlled descent.",Dumbbell Bench Press|Machine Chest Press
+,1,Push,Cable Chest Fly,0,3,10-12,8,,,90s,Stretch at the bottom.,Pec Deck|Dumbbell Fly
+,1,Pull,Lat Pulldown,2,3,8-10,7-8,,,2 min,Drive elbows to your hips.,Pull-Up
+,1,Legs,Back Squat,3,3,5-7,7,,,3 min,Brace before each rep.,Hack Squat|Leg Press
+,2,Push,Barbell Bench Press,2,3,6-8,8-9,,,2-3 min,,Dumbbell Bench Press
+,2,Push,Dumbbell Lateral Raise,0,3,12-15,,1,Drop set on last set,60s,Lead with the elbows.,Cable Lateral Raise

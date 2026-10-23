@@ -1,0 +1,222 @@
+{
+ "schema": "lift-tracker/program@1",
+ "id": "bodyweight-full-body",
+ "name": "Bodyweight Full Body (sample)",
+ "author": "Lift Tracker (generic sample)",
+ "description": "Generic 3-day full-body routine that needs no equipment. Rest 1:30 between sets. Progress by adding reps, then harder variations (see substitutions). Not a professional program.",
+ "schedule": [
+  "Day A",
+  "Rest",
+  "Day B",
+  "Rest",
+  "Day C",
+  "Rest",
+  "Rest"
+ ],
+ "weeks": [
+  {
+   "name": "Week 1",
+   "days": [
+    {
+     "name": "Day A",
+     "notes": "No equipment. Stop 1-2 reps short of failure on rep-based sets.",
+     "exercises": [
+      {
+       "name": "Push-Up",
+       "libraryId": "Pushups",
+       "workingSets": 3,
+       "reps": "8-15",
+       "rest": "1:30",
+       "notes": "Knees down or hands on a bench if needed.",
+       "bodyweight": true,
+       "substitutions": [
+        "Knee Push-Up",
+        "Incline Push-Up (Hands Elevated)"
+       ]
+      },
+      {
+       "name": "Bodyweight Squat",
+       "libraryId": "Bodyweight_Squat",
+       "workingSets": 3,
+       "reps": "15-20",
+       "rest": "1:30",
+       "notes": "",
+       "bodyweight": true
+      },
+      {
+       "name": "Doorway Row",
+       "libraryId": "lt-doorway-row",
+       "workingSets": 3,
+       "reps": "10-15",
+       "rest": "1:30",
+       "notes": "Use a sturdy door frame; walk feet closer to make it harder.",
+       "bodyweight": true,
+       "substitutions": [
+        "Inverted Row",
+        "Pullups"
+       ]
+      },
+      {
+       "name": "Glute Bridge",
+       "libraryId": "lt-glute-bridge",
+       "workingSets": 3,
+       "reps": "12-20",
+       "rest": "1:30",
+       "notes": "Pause 1 s at the top.",
+       "bodyweight": true
+      },
+      {
+       "name": "Plank",
+       "libraryId": "Plank",
+       "workingSets": 3,
+       "reps": "30-45 s",
+       "rest": "1:30",
+       "notes": "Log seconds held.",
+       "bodyweight": true,
+       "tracking": "time"
+      },
+      {
+       "name": "Mountain Climbers",
+       "libraryId": "Mountain_Climbers",
+       "workingSets": 3,
+       "reps": "20-30",
+       "rest": "1:30",
+       "notes": "Count each knee drive.",
+       "bodyweight": true
+      }
+     ]
+    },
+    {
+     "name": "Day B",
+     "notes": "No equipment.",
+     "exercises": [
+      {
+       "name": "Pike Push-Up",
+       "libraryId": "lt-pike-push-up",
+       "workingSets": 3,
+       "reps": "6-12",
+       "rest": "1:30",
+       "notes": "",
+       "bodyweight": true,
+       "substitutions": [
+        "Elevated Pike Push-Up"
+       ]
+      },
+      {
+       "name": "Reverse Lunge",
+       "libraryId": "lt-reverse-lunge",
+       "workingSets": 3,
+       "reps": "10-12 per leg",
+       "rest": "1:30",
+       "notes": "",
+       "bodyweight": true
+      },
+      {
+       "name": "Superman Hold",
+       "libraryId": "Superman",
+       "workingSets": 3,
+       "reps": "20-30 s",
+       "rest": "1:30",
+       "notes": "Log seconds held.",
+       "bodyweight": true,
+       "tracking": "time"
+      },
+      {
+       "name": "Single Leg Glute Bridge",
+       "libraryId": "Single_Leg_Glute_Bridge",
+       "workingSets": 3,
+       "reps": "10-15 per leg",
+       "rest": "1:30",
+       "notes": "",
+       "bodyweight": true
+      },
+      {
+       "name": "Hollow Body Hold",
+       "libraryId": "lt-hollow-body-hold",
+       "workingSets": 3,
+       "reps": "20-30 s",
+       "rest": "1:30",
+       "notes": "Bend the knees to make it easier.",
+       "bodyweight": true,
+       "tracking": "time"
+      },
+      {
+       "name": "Burpee",
+       "libraryId": "lt-burpee",
+       "workingSets": 3,
+       "reps": "8-12",
+       "rest": "1:30",
+       "notes": "",
+       "bodyweight": true
+      }
+     ]
+    },
+    {
+     "name": "Day C",
+     "notes": "No equipment (use a chair or couch for dips and split squats).",
+     "exercises": [
+      {
+       "name": "Bench Dips",
+       "libraryId": "Bench_Dips",
+       "workingSets": 3,
+       "reps": "8-15",
+       "rest": "1:30",
+       "notes": "Use a sturdy chair.",
+       "bodyweight": true
+      },
+      {
+       "name": "Bulgarian Split Squat",
+       "libraryId": "lt-bulgarian-split-squat",
+       "workingSets": 3,
+       "reps": "8-12 per leg",
+       "rest": "1:30",
+       "notes": "Rear foot on a chair or couch.",
+       "bodyweight": true
+      },
+      {
+       "name": "Doorway Row",
+       "libraryId": "lt-doorway-row",
+       "workingSets": 3,
+       "reps": "10-15",
+       "rest": "1:30",
+       "notes": "",
+       "bodyweight": true,
+       "substitutions": [
+        "Inverted Row",
+        "Chin-Up"
+       ]
+      },
+      {
+       "name": "Side Plank",
+       "libraryId": "lt-side-plank",
+       "workingSets": 3,
+       "reps": "20-30 s per side",
+       "rest": "1:30",
+       "notes": "Log seconds held.",
+       "bodyweight": true,
+       "tracking": "time"
+      },
+      {
+       "name": "Jump Squat",
+       "libraryId": "Freehand_Jump_Squat",
+       "workingSets": 3,
+       "reps": "10-12",
+       "rest": "1:30",
+       "notes": "Land softly.",
+       "bodyweight": true
+      },
+      {
+       "name": "V-Up",
+       "libraryId": "lt-v-up",
+       "workingSets": 3,
+       "reps": "10-15",
+       "rest": "1:30",
+       "notes": "",
+       "bodyweight": true
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

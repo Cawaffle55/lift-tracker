@@ -1,0 +1,660 @@
+{
+  "schema": "lift-tracker/program@1",
+  "id": "starter-ppl",
+  "name": "Starter PPL",
+  "author": "",
+  "description": "A suggested 6-day push/pull/legs starter routine; edit it to fit you. Warm up with 3-4 min of dynamic stretching, then ramp up with warm-up sets on the first heavy lift. Warm-up sets around RPE 5-6; working sets RPE 7-9, with isolation work and last sets closer to failure. Every exercise starts with 1:30 rest; change it per exercise or in Settings.",
+  "schedule": [
+    "Legs 1",
+    "Push 1",
+    "Pull 1",
+    "Legs 2",
+    "Push 2",
+    "Pull 2",
+    "Rest"
+  ],
+  "weeks": [
+    {
+      "name": "Week 1",
+      "notes": "Repeat weekly; add load or reps week to week. Schedule: Legs 1 → Push 1 → Pull 1 → Legs 2 → Push 2 → Pull 2 → Rest",
+      "days": [
+        {
+          "name": "Legs 1 (Quad Focused)",
+          "notes": "Start with 3-4 min of dynamic stretching, then a pyramid warm-up on squats.",
+          "exercises": [
+            {
+              "name": "Back Squat",
+              "warmupSets": 3,
+              "workingSets": 3,
+              "reps": "4",
+              "rpe": "5-6 first set → 7-8 last set",
+              "technique": "",
+              "load": "80% 1RM",
+              "rest": "1:30",
+              "notes": "Drive your knees out so they track over your toes. Keep the first week's sets submaximal.",
+              "substitutions": [
+                "Hack Squat",
+                "Leg Press"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "10",
+              "rpe": "7-8",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Push your hips straight back and keep the bar close as it travels straight down; get a deep hamstring stretch. Start light and add load in later weeks.",
+              "substitutions": [
+                "Dumbbell RDL",
+                "Stiff-Leg Deadlift"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Single-Leg Leg Press",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "15 (each leg)",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Effort ramps up here: take each leg close to failure.",
+              "substitutions": [
+                "Bulgarian Split Squat",
+                "Walking Lunge"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Eccentric-Accentuated Leg Extension",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "3-4 s eccentric",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Sit further back in the seat to involve the rectus femoris.",
+              "substitutions": [
+                "Reverse Nordic",
+                "Sissy Squat"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Seated Leg Curl",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "9-10 (last set to failure)",
+              "technique": "Drop set on last set: to failure, drop weight 50%, to failure again",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Seated curls put the hamstrings in a longer stretch than lying curls.",
+              "substitutions": [
+                "Lying Leg Curl",
+                "Nordic Ham Curl"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "Optional myo-reps for a weaker side",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Optionally add a few extra reps on your weaker calf until you can't get 4 clean reps.",
+              "substitutions": [
+                "Leg Press Calf Raise",
+                "Seated Calf Raise"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Plate-Weighted Decline Crunch",
+              "warmupSets": 0,
+              "workingSets": 2,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "Superset with long-lever plank",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Squeeze the abs to curl the weight up.",
+              "substitutions": [
+                "Cable Crunch"
+              ],
+              "superset": "A"
+            },
+            {
+              "name": "Long-Lever Pelvic Tilt Plank",
+              "warmupSets": 0,
+              "workingSets": 2,
+              "reps": "30 s",
+              "rpe": "8-9",
+              "technique": "Superset with decline crunch",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Elbows under eyes, squeeze glutes into posterior pelvic tilt.",
+              "substitutions": [
+                "Ab Wheel Rollout"
+              ],
+              "superset": "A"
+            }
+          ]
+        },
+        {
+          "name": "Push 1 (Chest Focused)",
+          "notes": "Chest, delts, triceps.",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "warmupSets": 3,
+              "workingSets": 3,
+              "reps": "8",
+              "rpe": "7-8",
+              "technique": "",
+              "load": "72.5% 1RM",
+              "rest": "1:30",
+              "notes": "Brief pause on the chest (~¼ s) for sets over 6 reps.",
+              "substitutions": [
+                "Dumbbell Bench Press",
+                "Machine Chest Press"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Machine Shoulder Press",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "12",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Machines let you push closer to failure with less joint/stabilizer fatigue.",
+              "substitutions": [
+                "Standing Dumbbell Arnold Press"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Dip",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "12-15",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Get a big stretch on the pecs at the bottom.",
+              "substitutions": [
+                "Deficit Push-Up"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Eccentric-Accentuated Skull Crusher",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "8-9",
+              "technique": "3 s eccentric",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Don't fully lock out at the top — keep constant tension.",
+              "substitutions": [
+                "EZ-Bar Overhead Extension",
+                "Cable Overhead Extension"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Egyptian Cable Lateral Raise",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "12",
+              "rpe": "9-10",
+              "technique": "Myo-reps on last set: after 12 reps rest a few breaths, do 4 more, repeat until you can't get 4",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Side delts are easy to under-train, so give them direct work.",
+              "substitutions": [
+                "Dumbbell Lateral Raise",
+                "Machine Lateral Raise"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Cable Triceps Kickback",
+              "warmupSets": 0,
+              "workingSets": 2,
+              "reps": "20-30",
+              "rpe": "8-9",
+              "technique": "1 s up / 1 s down tempo",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Keep the tempo controlled so form doesn't slip on high-rep work.",
+              "substitutions": [
+                "Dumbbell Kickback",
+                "Triceps Pressdown"
+              ],
+              "superset": ""
+            }
+          ]
+        },
+        {
+          "name": "Pull 1 (Lat Focused)",
+          "notes": "Lats, then mid-back and biceps.",
+          "exercises": [
+            {
+              "name": "Weighted Pull-Up",
+              "warmupSets": 2,
+              "workingSets": 3,
+              "reps": "6",
+              "rpe": "7-8",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Upright torso, legs straight down, chest up to the bar, full ROM. Bodyweight or assisted is fine.",
+              "substitutions": [
+                "Lat Pulldown",
+                "Assisted Pull-Up"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Seated Cable Row",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Elbows tucked, drive them down toward your stomach, not past your midline (lat emphasis). MAG grip or close neutral grip.",
+              "substitutions": [
+                "Chest-Supported Row",
+                "Single-Arm Dumbbell Row"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Kneeling Cable Pullover",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "15-20",
+              "rpe": "8-9",
+              "technique": "1 s up / 1 s down; end set when tempo fades",
+              "load": "",
+              "rest": "1:30",
+              "notes": "No strict rep target: stop the set when you can no longer hold the tempo.",
+              "substitutions": [
+                "Straight-Arm Pulldown",
+                "Dumbbell Pullover"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Hammer Cheat Curl",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "8-9",
+              "technique": "Controlled cheating",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Some body swing allowed to move heavier weight; grip the handle hard.",
+              "substitutions": [
+                "Rope Hammer Curl",
+                "Cross-Body Hammer Curl"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Incline Dumbbell Curl",
+              "warmupSets": 0,
+              "workingSets": 2,
+              "reps": "12-15",
+              "rpe": "9-10",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Strict: elbows back and locked, supinate by driving through the pinkies.",
+              "substitutions": [
+                "Bayesian Cable Curl",
+                "Preacher Curl"
+              ],
+              "superset": ""
+            }
+          ]
+        },
+        {
+          "name": "Legs 2 (Posterior-Chain Focused)",
+          "notes": "Glutes and hamstrings, with some quad work.",
+          "exercises": [
+            {
+              "name": "Deadlift",
+              "warmupSets": 3,
+              "workingSets": 3,
+              "reps": "3",
+              "rpe": "6-8 by the third set",
+              "technique": "",
+              "load": "80-85% 1RM",
+              "rest": "1:30",
+              "notes": "Submaximal. Bar over midfoot, straight up and down; pack the lats and scrape the bar up the shins.",
+              "substitutions": [
+                "Trap Bar Deadlift",
+                "Barbell Hip Thrust"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Hack Squat",
+              "warmupSets": 2,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "7-8 (2-3 RIR)",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Main quad move: let knees travel past toes; use the same stance width/foot flare as your barbell squat.",
+              "substitutions": [
+                "Goblet Squat"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Single-Leg Hip Thrust",
+              "warmupSets": 0,
+              "workingSets": 2,
+              "reps": "15 (each leg)",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Squeeze each glute, posterior pelvic tilt at the top, chin tucked.",
+              "substitutions": [
+                "Barbell Hip Thrust",
+                "Glute Bridge"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Nordic Ham Curl",
+              "warmupSets": 0,
+              "workingSets": 2,
+              "reps": "6-8",
+              "rpe": "8-9",
+              "technique": "Superset with prisoner back extension; use assistance as needed",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Anchor your feet under a pad (e.g. a lat pulldown) and use a band or pulley for assistance as needed.",
+              "substitutions": [
+                "Seated Leg Curl",
+                "Lying Leg Curl"
+              ],
+              "superset": "A"
+            },
+            {
+              "name": "Prisoner Back Extension",
+              "warmupSets": 0,
+              "workingSets": 2,
+              "reps": "10-15",
+              "rpe": "8-9",
+              "technique": "Superset with Nordic curl",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Hands behind your head lengthen the lever, so it's harder on the glutes and works some upper back.",
+              "substitutions": [
+                "45° Back Extension",
+                "Reverse Hyper"
+              ],
+              "superset": "A"
+            },
+            {
+              "name": "Single-Leg Leg Press Calf Raise",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "8-10 (each leg)",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Start with your weaker leg; stretch the weaker calf between sets.",
+              "substitutions": [
+                "Single-Leg Standing Calf Raise"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Weighted L-Sit Hold",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "Max hold (aim 20-30 s)",
+              "rpe": "10",
+              "technique": "To failure",
+              "load": "",
+              "rest": "1:30",
+              "notes": "10-25 lb plate on the thighs via pull-up belt; build hold time to 20-30 s at the same weight.",
+              "substitutions": [
+                "Hanging Leg Raise",
+                "L-Sit (bodyweight)"
+              ],
+              "superset": ""
+            }
+          ]
+        },
+        {
+          "name": "Push 2 (Delt Focused)",
+          "notes": "Shoulders first, then chest and triceps.",
+          "exercises": [
+            {
+              "name": "Overhead Press",
+              "warmupSets": 3,
+              "workingSets": 4,
+              "reps": "4",
+              "rpe": "7-8",
+              "technique": "",
+              "load": "80% 1RM",
+              "rest": "1:30",
+              "notes": "Arch the upper back and squeeze the glutes to avoid energy leaks.",
+              "substitutions": [
+                "Seated Dumbbell Shoulder Press",
+                "Machine Shoulder Press"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Close-Grip Bench Press",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "10",
+              "rpe": "7-8",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Move grip in only ~1 hand-width per side; tuck elbows a bit, steady cadence (optionally pause the last few reps).",
+              "substitutions": [
+                "Dip",
+                "Close-Grip Dumbbell Press"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Low-to-High Cable Crossover",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "9-10 (last set to failure)",
+              "technique": "Drop set on last set: to failure (~10-12), drop 50%, to failure again",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Targets the upper pecs.",
+              "substitutions": [
+                "Incline Dumbbell Fly",
+                "Pec Deck"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Cable Overhead Triceps Extension",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Elbows locked in place, big stretch at the bottom, squeeze at the top, full ROM.",
+              "substitutions": [
+                "Dumbbell Overhead Extension",
+                "EZ-Bar Skull Crusher"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise 21s",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "7 full + 7 top-half + 7 bottom-half",
+              "rpe": "9-10",
+              "technique": "Mechanical drop set (21s)",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Shrink the range of motion as fatigue builds: full ROM, then top ½-¾, then bottom half.",
+              "substitutions": [
+                "Cable Lateral Raise 21s",
+                "Machine Lateral Raise"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Neck Flexion/Extension",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "7-8",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Use a 4-way neck machine, a plate or a harness. Optional, light neck work.",
+              "substitutions": [
+                "Plate Neck Curl/Extension",
+                "Neck Harness"
+              ],
+              "superset": ""
+            }
+          ]
+        },
+        {
+          "name": "Pull 2 (Mid-Back & Rear Delt Focused)",
+          "notes": "Mid-back, rear delts, traps, biceps.",
+          "exercises": [
+            {
+              "name": "Omni-Grip Lat Pulldown",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "Grip changes each set: wide → moderate → close supinated",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Biceps help more as grips narrow, so you can keep the same weight/reps as you fatigue.",
+              "substitutions": [
+                "Pull-Up (varied grips)"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Chest-Supported Machine Row",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Let the shoulder blades fully protract at the bottom, squeeze hard at the top (chest can come off the pad slightly).",
+              "substitutions": [
+                "Chest-Supported T-Bar Row",
+                "Incline Dumbbell Row"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Rope Face Pull",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "15-20",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Pull slightly up and externally rotate (rear delts/rotator cuff) rather than squeezing the shoulder blades back.",
+              "substitutions": [
+                "Reverse Cable Fly",
+                "Band Pull-Apart"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Incline Dumbbell Shrug (optional)",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "15-20",
+              "rpe": "8-9",
+              "technique": "",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Optional upper-trap work; straps recommended.",
+              "substitutions": [
+                "Barbell Shrug",
+                "Cable Shrug"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "Reverse Pec Deck",
+              "warmupSets": 0,
+              "workingSets": 2,
+              "reps": "15 + 10-15",
+              "rpe": "9-10",
+              "technique": "Cue change extends the set: 15 reps with shoulder blades protracted, short rest, then 10-15 reps squeezing shoulder blades together",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Sweep out, not back, on the first 15.",
+              "substitutions": [
+                "Reverse Cable Fly",
+                "Bent-Over Dumbbell Reverse Fly"
+              ],
+              "superset": ""
+            },
+            {
+              "name": "EZ-Bar Pronated → Supinated Curl",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10 pronated + 10 supinated",
+              "rpe": "9-10",
+              "technique": "Superset/mechanical drop: overhand curls straight into underhand curls",
+              "load": "",
+              "rest": "1:30",
+              "notes": "Pre-fatigue the forearm flexors with the overhand grip, then flip palms up so the biceps take over.",
+              "substitutions": [
+                "Dumbbell Reverse Curl → Dumbbell Curl"
+              ],
+              "superset": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

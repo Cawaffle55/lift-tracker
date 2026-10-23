@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lift Tracker</title>
+  <meta name="description" content="Offline workout set/rep tracker">
+  <meta name="theme-color" content="#0d0f12">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lift Tracker">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header id="topbar"><div id="topbar-inner"></div></header>
+  <main id="view" aria-live="polite"></main>
+  <div id="rest-timer" class="hidden" role="timer"></div>
+  <nav id="tabbar">
+    <button data-tab="workout" class="tab"><span class="ti">🏋️</span><span>Workout</span></button>
+    <button data-tab="history" class="tab"><span class="ti">🗓️</span><span>History</span></button>
+    <button data-tab="exercises" class="tab"><span class="ti">📈</span><span>Exercises</span></button>
+    <button data-tab="programs" class="tab"><span class="ti">📋</span><span>Programs</span></button>
+    <button data-tab="settings" class="tab"><span class="ti">⚙️</span><span>Settings</span></button>
+  </nav>
+  <div id="sheet-backdrop" class="hidden"></div>
+  <div id="sheet" class="hidden" role="dialog" aria-modal="true"></div>
+  <div id="toast" class="hidden"></div>
+  <input type="file" id="file-input" accept=".json,.csv,.txt,application/json,text/csv,text/plain" hidden>
+  <script src="js/importers.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/library.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/onboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

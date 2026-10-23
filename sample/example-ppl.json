@@ -1,0 +1,416 @@
+{
+  "schema": "lift-tracker/program@1",
+  "id": "sample-example-ppl",
+  "name": "Example PPL (sample)",
+  "author": "Lift Tracker",
+  "description": "Generic sample Push/Pull/Legs program for trying the app. Not a real coaching program.",
+  "source": "sample",
+  "weeks": [
+    {
+      "name": "Week 1",
+      "notes": "Moderate effort.",
+      "days": [
+        {
+          "name": "Push",
+          "notes": "Chest, shoulders, triceps.",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "warmupSets": 2,
+              "workingSets": 3,
+              "reps": "6-8",
+              "rpe": "7-8",
+              "technique": "",
+              "rest": "2-3 min",
+              "notes": "Shoulder blades pinned, controlled descent.",
+              "substitutions": [
+                "Dumbbell Bench Press",
+                "Machine Chest Press"
+              ]
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "7-8",
+              "technique": "",
+              "rest": "2 min",
+              "notes": "Stop just short of lockout.",
+              "substitutions": [
+                "Machine Shoulder Press",
+                "Standing Barbell Press"
+              ]
+            },
+            {
+              "name": "Cable Chest Fly",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8",
+              "technique": "",
+              "rest": "90s",
+              "notes": "Stretch at the bottom, squeeze at the top.",
+              "substitutions": [
+                "Pec Deck",
+                "Dumbbell Fly"
+              ]
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "12-15",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "60s",
+              "notes": "Lead with the elbows.",
+              "substitutions": [
+                "Cable Lateral Raise"
+              ]
+            },
+            {
+              "name": "Triceps Rope Pushdown",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "60s",
+              "notes": "Keep elbows tucked.",
+              "substitutions": [
+                "Overhead Cable Extension",
+                "Dips"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pull",
+          "notes": "Back and biceps.",
+          "exercises": [
+            {
+              "name": "Lat Pulldown",
+              "warmupSets": 2,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "7-8",
+              "technique": "",
+              "rest": "2 min",
+              "notes": "Drive elbows to your hips.",
+              "substitutions": [
+                "Pull-Up",
+                "Machine Pulldown"
+              ]
+            },
+            {
+              "name": "Chest-Supported Row",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "7-8",
+              "technique": "",
+              "rest": "2 min",
+              "notes": "Pause briefly at the top.",
+              "substitutions": [
+                "Seated Cable Row",
+                "Dumbbell Row"
+              ]
+            },
+            {
+              "name": "Face Pull",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "12-15",
+              "rpe": "8",
+              "technique": "",
+              "rest": "60s",
+              "notes": "Pull toward the forehead, rotate out.",
+              "substitutions": [
+                "Reverse Pec Deck"
+              ]
+            },
+            {
+              "name": "Dumbbell Curl",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "60s",
+              "notes": "No swinging.",
+              "substitutions": [
+                "Cable Curl",
+                "EZ-Bar Curl"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Legs",
+          "notes": "Quads, hamstrings, calves.",
+          "exercises": [
+            {
+              "name": "Back Squat",
+              "warmupSets": 3,
+              "workingSets": 3,
+              "reps": "5-7",
+              "rpe": "7",
+              "technique": "",
+              "rest": "3 min",
+              "notes": "Brace before each rep.",
+              "substitutions": [
+                "Hack Squat",
+                "Leg Press"
+              ]
+            },
+            {
+              "name": "Romanian Deadlift",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "7",
+              "technique": "",
+              "rest": "2-3 min",
+              "notes": "Hinge until a hamstring stretch, flat back.",
+              "substitutions": [
+                "Dumbbell RDL",
+                "Seated Leg Curl"
+              ]
+            },
+            {
+              "name": "Leg Extension",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "12-15",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "90s",
+              "notes": "Squeeze at the top for a second.",
+              "substitutions": [
+                "Walking Lunge"
+              ]
+            },
+            {
+              "name": "Standing Calf Raise",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-15",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "60s",
+              "notes": "Full stretch at the bottom.",
+              "substitutions": [
+                "Seated Calf Raise",
+                "Leg Press Calf Raise"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Week 2",
+      "notes": "Push a little harder.",
+      "days": [
+        {
+          "name": "Push",
+          "notes": "Chest, shoulders, triceps.",
+          "exercises": [
+            {
+              "name": "Barbell Bench Press",
+              "warmupSets": 2,
+              "workingSets": 3,
+              "reps": "6-8",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "2-3 min",
+              "notes": "Shoulder blades pinned, controlled descent.",
+              "substitutions": [
+                "Dumbbell Bench Press",
+                "Machine Chest Press"
+              ]
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "2 min",
+              "notes": "Stop just short of lockout.",
+              "substitutions": [
+                "Machine Shoulder Press",
+                "Standing Barbell Press"
+              ]
+            },
+            {
+              "name": "Cable Chest Fly",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "9",
+              "technique": "",
+              "rest": "90s",
+              "notes": "Stretch at the bottom, squeeze at the top.",
+              "substitutions": [
+                "Pec Deck",
+                "Dumbbell Fly"
+              ]
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "12-15",
+              "rpe": "9-10",
+              "technique": "Drop set on last set",
+              "rest": "60s",
+              "notes": "Lead with the elbows.",
+              "substitutions": [
+                "Cable Lateral Raise"
+              ]
+            },
+            {
+              "name": "Triceps Rope Pushdown",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "9-10",
+              "technique": "",
+              "rest": "60s",
+              "notes": "Keep elbows tucked.",
+              "substitutions": [
+                "Overhead Cable Extension",
+                "Dips"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pull",
+          "notes": "Back and biceps.",
+          "exercises": [
+            {
+              "name": "Lat Pulldown",
+              "warmupSets": 2,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "2 min",
+              "notes": "Drive elbows to your hips.",
+              "substitutions": [
+                "Pull-Up",
+                "Machine Pulldown"
+              ]
+            },
+            {
+              "name": "Chest-Supported Row",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "8-9",
+              "technique": "",
+              "rest": "2 min",
+              "notes": "Pause briefly at the top.",
+              "substitutions": [
+                "Seated Cable Row",
+                "Dumbbell Row"
+              ]
+            },
+            {
+              "name": "Face Pull",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "12-15",
+              "rpe": "9",
+              "technique": "",
+              "rest": "60s",
+              "notes": "Pull toward the forehead, rotate out.",
+              "substitutions": [
+                "Reverse Pec Deck"
+              ]
+            },
+            {
+              "name": "Dumbbell Curl",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-12",
+              "rpe": "9-10",
+              "technique": "",
+              "rest": "60s",
+              "notes": "No swinging.",
+              "substitutions": [
+                "Cable Curl",
+                "EZ-Bar Curl"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Legs",
+          "notes": "Quads, hamstrings, calves.",
+          "exercises": [
+            {
+              "name": "Back Squat",
+              "warmupSets": 3,
+              "workingSets": 3,
+              "reps": "5-7",
+              "rpe": "8",
+              "technique": "",
+              "rest": "3 min",
+              "notes": "Brace before each rep.",
+              "substitutions": [
+                "Hack Squat",
+                "Leg Press"
+              ]
+            },
+            {
+              "name": "Romanian Deadlift",
+              "warmupSets": 1,
+              "workingSets": 3,
+              "reps": "8-10",
+              "rpe": "8",
+              "technique": "",
+              "rest": "2-3 min",
+              "notes": "Hinge until a hamstring stretch, flat back.",
+              "substitutions": [
+                "Dumbbell RDL",
+                "Seated Leg Curl"
+              ]
+            },
+            {
+              "name": "Leg Extension",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "12-15",
+              "rpe": "9-10",
+              "technique": "",
+              "rest": "90s",
+              "notes": "Squeeze at the top for a second.",
+              "substitutions": [
+                "Walking Lunge"
+              ]
+            },
+            {
+              "name": "Standing Calf Raise",
+              "warmupSets": 0,
+              "workingSets": 3,
+              "reps": "10-15",
+              "rpe": "9-10",
+              "technique": "",
+              "rest": "60s",
+              "notes": "Full stretch at the bottom.",
+              "substitutions": [
+                "Seated Calf Raise",
+                "Leg Press Calf Raise"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
