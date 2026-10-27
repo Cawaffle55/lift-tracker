@@ -181,3 +181,13 @@ tr.set.tag-d td:first-child{box-shadow:inset 3px 0 0 #a855f7}
 @keyframes coachIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .help-list details{border-bottom:1px solid var(--line);padding:10px 0} .help-list details:last-child{border:0}
 .help-list summary{font-weight:600;cursor:pointer} .help-list p{margin:6px 0 0;color:#c9d0da}
+
+/* v1.6.0 new-PR celebration: badge + confetti (never blocks taps) */
+#pr-badge{position:fixed;left:50%;top:calc(30% + var(--safe-t));z-index:80;transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none;text-align:center;padding:14px 22px;border-radius:18px;background:linear-gradient(135deg,#facc15,#f59e0b);color:#1f1300;box-shadow:0 10px 40px rgba(245,158,11,.45);min-width:200px;max-width:86vw}
+#pr-badge.show{animation:prpop 2.8s cubic-bezier(.2,1.4,.4,1) forwards}
+#pr-badge .prb-title{font-size:24px;font-weight:900;letter-spacing:.5px}
+#pr-badge .prb-lift{font-weight:700;font-size:16px;margin-top:2px}
+#pr-badge .prb-val{font-size:14px;margin-top:2px}#pr-badge .prb-val span{opacity:.75}
+@keyframes prpop{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}20%{transform:translate(-50%,-50%) scale(1)}85%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-60%) scale(.95)}}
+#confetti{position:fixed;inset:0;width:100vw;height:100vh;z-index:79;pointer-events:none;display:none}#confetti.on{display:block}
+@media (prefers-reduced-motion: reduce){#pr-badge.show{animation:none;opacity:1;transform:translate(-50%,-50%)}}

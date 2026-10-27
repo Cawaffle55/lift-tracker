@@ -1,5 +1,5 @@
 /* Lift Tracker service worker: offline app shell (cache-first, refreshed in background). */
-const VERSION = 'lt-v1.5.1';
+const VERSION = 'lt-v1.6.0';
 const IMG_CACHE = 'lt-img-v1'; // form-demo photos from the jsDelivr CDN, cached once viewed
 const IMG_MAX = 600;
 const SHELL = [

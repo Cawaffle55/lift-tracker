@@ -6,7 +6,7 @@
   const view = $('#view'); const topbar = $('#topbar-inner');
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const uid = L.uid;
-  const APP_VERSION = '1.5.1';
+  const APP_VERSION = '1.6.0';
   const BUILTIN_VERSION = 4; // bump when a bundled program definition changes
   let pendingImport = null; // { results:[{program,warnings,ignored}], kind, pasteText }
   let pasteDraft = { text: '', name: '', repeat: 1 };
@@ -297,8 +297,60 @@
       if (sec > 0) startRest(sec, ex.name);
     }
     if (dropNext && D.current.rest) { D.current.rest = null; tickRest(); }
+    const pr = setPR(ex, s);
     S.save('current'); rerenderEx(ei);
-    window.LTSound.play(ex.sets.every((x) => x.done) ? 'exercise' : 'set');
+    if (pr) celebratePR(pr); else window.LTSound.play(ex.sets.every((x) => x.done) ? 'exercise' : 'set');
+  }
+
+  /* ---------- live PR detection (per completed working set) ----------
+     Same rules as the end-of-workout PRs: beats the best heaviest weight or best est. 1RM (Epley) from saved history
+     for that exercise (unit-converted), or the longest hold for timed exercises. Also must beat this session's other
+     completed sets so repeat sets don't re-trigger. No celebration for an exercise's first-ever log. */
+  function historyBests(name, u) {
+    const n = norm(name); const b = { w: 0, e: 0, hold: 0, had: false };
+    D.workouts.forEach((o) => o.exercises.forEach((e) => { if (norm(e.name) !== n) return; e.sets.forEach((x) => { if (!x.done || x.type !== 'working') return; b.had = true; const wt = conv(x.weight, o.unit, u) || 0; b.w = Math.max(b.w, wt); b.e = Math.max(b.e, e1rm(wt, x.reps)); b.hold = Math.max(b.hold, x.reps || 0); }); }));
+    return b;
+  }
+  function setPR(ex, s) {
+    if (!s.done || s.type !== 'working' || !D.current) return null;
+    const u = D.current.unit; const b = historyBests(ex.name, u); if (!b.had) return null;
+    const others = ex.sets.filter((x) => x !== s && x.done && x.type === 'working');
+    if (isTime(ex)) {
+      const best = Math.max(b.hold, ...others.map((x) => x.reps || 0));
+      return b.hold && (s.reps || 0) > best ? { exercise: ex.name, type: 'Longest hold', value: `${s.reps} s` } : null;
+    }
+    if (!s.weight || !s.reps || !b.w) return null;
+    const bw = Math.max(b.w, ...others.map((x) => x.weight || 0)); const be = Math.max(b.e, ...others.map((x) => e1rm(x.weight, x.reps)));
+    const se = e1rm(s.weight, s.reps);
+    if (s.weight > bw + 1e-6) return { exercise: ex.name, type: 'Heaviest weight', value: `${fmtNum(s.weight)} ${u} × ${s.reps}`, e1rm: Math.round(se) };
+    if (se > be + 1e-6) return { exercise: ex.name, type: 'Best est. 1RM', value: `${fmtNum(Math.round(se))} ${u}`, set: `${fmtNum(s.weight)} × ${s.reps}` };
+    return null;
+  }
+  function celebratePR(pr) {
+    window.LTSound.play('pr');
+    if (D.current) D.current.livePRs = (D.current.livePRs || 0) + 1;
+    window.LTApp && (window.LTApp.lastPR = { ...pr, at: Date.now() });
+    let el = $('#pr-badge'); if (!el) { el = document.createElement('div'); el.id = 'pr-badge'; el.setAttribute('role', 'status'); el.setAttribute('aria-live', 'polite'); document.body.appendChild(el); }
+    el.innerHTML = `<div class="prb-title">🏆 New PR!</div><div class="prb-lift">${esc(pr.exercise)}</div><div class="prb-val">${esc(pr.type)} · ${esc(pr.value)}${pr.set ? ` <span>(${esc(pr.set)})</span>` : ''}</div>`;
+    el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+    clearTimeout(celebratePR.t); celebratePR.t = setTimeout(() => el.classList.remove('show'), 2800);
+    confetti();
+  }
+  function confetti() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let cv = $('#confetti'); if (!cv) { cv = document.createElement('canvas'); cv.id = 'confetti'; document.body.appendChild(cv); }
+    const dpr = window.devicePixelRatio || 1; const W = window.innerWidth; const H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr; const g = cv.getContext('2d'); if (!g) return; g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const cols = ['#facc15', '#22c55e', '#3b82f6', '#f472b6', '#f97316', '#a855f7'];
+    const P = Array.from({ length: 90 }, () => { const a = -Math.PI / 2 + (Math.random() - 0.5) * 1.9; const v = 7 + Math.random() * 8; return { x: W / 2, y: H * 0.42, vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.4, w: 6 + Math.random() * 5, h: 3 + Math.random() * 4, c: cols[(Math.random() * cols.length) | 0] }; });
+    const t0 = performance.now(); cv.classList.add('on'); cancelAnimationFrame(confetti.raf);
+    const step = (now) => {
+      const k = (now - t0) / 1600; g.clearRect(0, 0, W, H);
+      if (k >= 1) { cv.classList.remove('on'); return; }
+      P.forEach((p) => { p.vy += 0.32; p.vx *= 0.985; p.x += p.vx; p.y += p.vy; p.r += p.vr; g.save(); g.globalAlpha = Math.min(1, (1 - k) * 2); g.translate(p.x, p.y); g.rotate(p.r); g.fillStyle = p.c; g.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); g.restore(); });
+      confetti.raf = requestAnimationFrame(step);
+    };
+    confetti.raf = requestAnimationFrame(step);
   }
 
   /* ---------- rest timer ---------- */
@@ -355,13 +407,13 @@
     if (w.backdated) { const real = Math.round((Date.now() - new Date(w.realStart || Date.now())) / 1000); w.durationSec = real >= 15 * 60 && real <= 4 * 3600 ? real : 3600; w.finishedAt = new Date(new Date(w.startedAt).getTime() + w.durationSec * 1000).toISOString(); delete w.realStart; }
     else { w.finishedAt = new Date().toISOString(); w.durationSec = Math.round((new Date(w.finishedAt) - new Date(w.startedAt)) / 1000); }
     w.exercises = w.exercises.map((e) => ({ ...e, sets: e.sets.filter((s) => s.done) })).filter((e) => e.sets.length || e.notes);
-    delete w.rest;
+    delete w.rest; delete w.livePRs;
     w.prs = computePRs(w);
     if (upd) applyDayChanges(upd, c);
     D.workouts.unshift(w); D.workouts.sort((a, b) => (a.startedAt < b.startedAt ? 1 : -1)); D.current = null;
     Promise.all([S.saveNow('workouts'), S.saveNow('current'), upd ? S.saveNow('programs') : null]).then(() => {
       closeSheet(); tickRest(); syncWake(); go('#/history/' + w.id + '/summary');
-      window.LTSound.play('finish'); if (w.prs.length) setTimeout(() => window.LTSound.play('pr'), 1500);
+      window.LTSound.play('finish'); if (w.prs.length && !c.livePRs) setTimeout(() => window.LTSound.play('pr'), 1500); // already celebrated live -> don't repeat
       toast(w.prs.length ? `Workout saved · ${w.prs.length} PR${w.prs.length > 1 ? 's' : ''} 🏆` : 'Workout saved 💪');
     });
   }
@@ -965,8 +1017,8 @@
       <div class="card"><h3>Sounds &amp; haptics</h3>
         <div class="toggle"><span>Sounds</span><input type="checkbox" style="width:24px;height:24px" data-act="set-bool" data-k="sound" ${st.sound ? 'checked' : ''}></div>
         <div class="toggle"><span>Volume</span><input type="range" min="0" max="100" step="5" style="width:55%;padding:0" data-act="volume" value="${st.volume ?? 70}"></div>
-        <div class="toggle"><span>Haptics (vibrate)</span><input type="checkbox" style="width:24px;height:24px" data-act="set-bool" data-k="vibrate" ${st.vibrate ? 'checked' : ''}></div>
-        <div class="row wrap" style="margin-top:8px">${['set', 'exercise', 'finish', 'pr', 'rest'].map((n) => `<button class="btn sm" data-act="test-sound" data-n="${n}">▶ ${{ set: 'Set', exercise: 'Exercise', finish: 'Finish', pr: 'PR', rest: 'Rest over' }[n]}</button>`).join('')}</div>
+        <div class="toggle"><span>Haptics (vibrate)<div class="tiny mute">Tick on each set, buzz when rest is over, rumble on a new PR${typeof navigator.vibrate === 'function' ? '' : ' (not supported in this browser, e.g. iPhone)'}</div></span><input type="checkbox" style="width:24px;height:24px" data-act="set-bool" data-k="vibrate" ${st.vibrate ? 'checked' : ''}></div>
+        <div class="row wrap" style="margin-top:8px">${['set', 'exercise', 'finish', 'pr', 'rest'].map((n) => `<button class="btn sm" data-act="test-sound" data-n="${n}">▶ ${{ set: 'Set done', exercise: 'Exercise done', finish: 'Workout done', pr: 'New PR', rest: 'Rest over' }[n]}</button>`).join('')}</div>
         <p class="tiny mute">iPhone: the silent/ring switch mutes web app sounds.</p></div>
       <div class="card stack"><h3>Backup</h3><p class="small mute" style="margin:0">Your data lives only on this device. Export a backup regularly.</p>
         <button class="btn block primary" data-act="export-backup">Export backup (JSON)</button>
@@ -1417,7 +1469,7 @@
         else { D.settings.defaultRest = Math.max(15, Math.min(600, (D.settings.defaultRest || 90) + +b.dataset.d)); $('#def-rest-val').textContent = fmtClock(D.settings.defaultRest); }
         S.save('settings'); break;
       }
-      case 'test-sound': window.LTSound.play(b.dataset.n); break;
+      case 'test-sound': if (b.dataset.n === 'pr') celebratePR({ exercise: 'Test lift', type: 'Heaviest weight', value: `225 ${unit()} × 5` }); else window.LTSound.play(b.dataset.n); break;
       case 'install': if (deferredInstall) { deferredInstall.prompt(); deferredInstall = null; } break;
     }
   });
