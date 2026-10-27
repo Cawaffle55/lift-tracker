@@ -6,7 +6,7 @@
   const view = $('#view'); const topbar = $('#topbar-inner');
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const uid = L.uid;
-  const APP_VERSION = '1.6.0';
+  const APP_VERSION = '1.6.1';
   const BUILTIN_VERSION = 4; // bump when a bundled program definition changes
   let pendingImport = null; // { results:[{program,warnings,ignored}], kind, pasteText }
   let pasteDraft = { text: '', name: '', repeat: 1 };
@@ -303,28 +303,27 @@
   }
 
   /* ---------- live PR detection (per completed working set) ----------
-     Same rules as the end-of-workout PRs: beats the best heaviest weight or best est. 1RM (Epley) from saved history
-     for that exercise (unit-converted), or the longest hold for timed exercises. Also must beat this session's other
-     completed sets so repeat sets don't re-trigger. No celebration for an exercise's first-ever log. */
+     A weighted working set is a PR only when its weight is STRICTLY heavier than the heaviest weight ever logged for that
+     lift in any saved workout (all completed sets, unit-converted) and than this session's earlier working sets. A lift
+     never logged with weight: its first weighted working set counts. More reps at the same/lower weight never triggers.
+     Timed lifts: longer hold than any saved hold (needs history). Warm-ups never count. */
   function historyBests(name, u) {
-    const n = norm(name); const b = { w: 0, e: 0, hold: 0, had: false };
-    D.workouts.forEach((o) => o.exercises.forEach((e) => { if (norm(e.name) !== n) return; e.sets.forEach((x) => { if (!x.done || x.type !== 'working') return; b.had = true; const wt = conv(x.weight, o.unit, u) || 0; b.w = Math.max(b.w, wt); b.e = Math.max(b.e, e1rm(wt, x.reps)); b.hold = Math.max(b.hold, x.reps || 0); }); }));
+    const n = norm(name); const b = { w: 0, hold: 0, had: false };
+    D.workouts.forEach((o) => o.exercises.forEach((e) => { if (norm(e.name) !== n) return; e.sets.forEach((x) => { if (!x.done) return; b.w = Math.max(b.w, conv(x.weight, o.unit, u) || 0); if (x.type === 'working') { b.had = true; b.hold = Math.max(b.hold, x.reps || 0); } }); }));
     return b;
   }
   function setPR(ex, s) {
     if (!s.done || s.type !== 'working' || !D.current) return null;
-    const u = D.current.unit; const b = historyBests(ex.name, u); if (!b.had) return null;
+    const u = D.current.unit; const b = historyBests(ex.name, u);
     const others = ex.sets.filter((x) => x !== s && x.done && x.type === 'working');
     if (isTime(ex)) {
+      if (!b.had || !b.hold) return null;
       const best = Math.max(b.hold, ...others.map((x) => x.reps || 0));
-      return b.hold && (s.reps || 0) > best ? { exercise: ex.name, type: 'Longest hold', value: `${s.reps} s` } : null;
+      return (s.reps || 0) > best ? { exercise: ex.name, type: 'Longest hold', value: `${s.reps} s` } : null;
     }
-    if (!s.weight || !s.reps || !b.w) return null;
-    const bw = Math.max(b.w, ...others.map((x) => x.weight || 0)); const be = Math.max(b.e, ...others.map((x) => e1rm(x.weight, x.reps)));
-    const se = e1rm(s.weight, s.reps);
-    if (s.weight > bw + 1e-6) return { exercise: ex.name, type: 'Heaviest weight', value: `${fmtNum(s.weight)} ${u} × ${s.reps}`, e1rm: Math.round(se) };
-    if (se > be + 1e-6) return { exercise: ex.name, type: 'Best est. 1RM', value: `${fmtNum(Math.round(se))} ${u}`, set: `${fmtNum(s.weight)} × ${s.reps}` };
-    return null;
+    if (!s.weight || !s.reps) return null;
+    const best = Math.max(b.w, ...others.map((x) => x.weight || 0));
+    return s.weight > best + 1e-6 ? { exercise: ex.name, type: 'Heaviest weight', value: `${fmtNum(s.weight)} ${u} × ${s.reps}`, first: !b.w && !others.some((x) => x.weight), prev: best } : null;
   }
   function celebratePR(pr) {
     window.LTSound.play('pr');
@@ -383,12 +382,9 @@
       }
       const done = ex.sets.filter((s) => s.done && s.type === 'working' && s.weight && s.reps);
       if (!done.length) return;
-      const n = norm(ex.name); let bestW = 0, bestE = 0;
-      D.workouts.forEach((o) => o.exercises.forEach((e) => { if (norm(e.name) !== n) return; e.sets.forEach((s) => { if (!s.done || s.type !== 'working') return; const wt = conv(s.weight, o.unit, w.unit); bestW = Math.max(bestW, wt || 0); bestE = Math.max(bestE, e1rm(wt, s.reps)); }); }));
-      const hadHistory = bestW > 0;
-      const topW = Math.max(...done.map((s) => s.weight)); const topE = Math.max(...done.map((s) => e1rm(s.weight, s.reps)));
-      if (hadHistory && topW > bestW + 1e-6) prs.push({ exercise: ex.name, type: 'Heaviest weight', value: `${fmtNum(topW)} ${w.unit}` });
-      if (hadHistory && topE > bestE + 1e-6) prs.push({ exercise: ex.name, type: 'Best est. 1RM', value: `${fmtNum(Math.round(topE))} ${w.unit}` });
+      const bestW = historyBests(ex.name, w.unit).w; // same rule as the live celebration: strictly heavier than any saved workout
+      const topW = Math.max(...done.map((s) => s.weight));
+      if (topW > bestW + 1e-6) prs.push({ exercise: ex.name, type: 'Heaviest weight', value: `${fmtNum(topW)} ${w.unit}` });
     });
     return prs;
   }
