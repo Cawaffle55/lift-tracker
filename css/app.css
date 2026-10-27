@@ -8,11 +8,14 @@ html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.4 -apple-s
 body{padding-top:calc(52px + var(--safe-t));padding-bottom:calc(var(--tab) + var(--safe-b) + 12px)}
 body.has-timer{padding-bottom:calc(var(--tab) + var(--safe-b) + 84px)}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-action:manipulation}
-input,textarea,select{font:inherit;color:var(--text);background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+input,textarea,select{font:inherit;font-size:max(16px,1em);color:var(--text);background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
 input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:-1px}
+/* Safari draws native selects/search fields white-on-white; use our own look everywhere */
+select{-webkit-appearance:none;appearance:none;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238d96a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:12px 8px}
+input[type=search]{-webkit-appearance:none;appearance:none}
 textarea{resize:vertical;min-height:64px}
 .hidden{display:none!important}
-#topbar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(13,15,18,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:var(--safe-t);border-bottom:1px solid var(--line)}
+#topbar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(13,15,18,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:var(--safe-t);border-bottom:1px solid var(--line)}
 #topbar-inner{height:52px;display:flex;align-items:center;gap:8px;padding:0 12px}
 #topbar h1{font-size:18px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #topbar .sub{font-size:12px;color:var(--mute);font-weight:500}
@@ -79,7 +82,7 @@ tr.set.done .done-btn{background:var(--good);color:#04210f}
 #rest-timer.over{background:#14532d}
 /* sheet */
 #sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40}
-#sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--card);border-radius:20px 20px 0 0;padding:16px 16px calc(16px + var(--safe-b));max-height:88vh;overflow:auto;max-width:640px;margin:0 auto}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--card);border-radius:20px 20px 0 0;padding:16px 16px calc(16px + var(--safe-b));max-height:88vh;max-height:88dvh;overflow:auto;overscroll-behavior:contain;max-width:640px;margin:0 auto}
 #sheet h3{margin:0 0 12px}
 .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
 .chips button{min-height:48px;border-radius:12px;background:var(--card2);font-weight:700}
@@ -189,5 +192,8 @@ tr.set.tag-d td:first-child{box-shadow:inset 3px 0 0 #a855f7}
 #pr-badge .prb-lift{font-weight:700;font-size:16px;margin-top:2px}
 #pr-badge .prb-val{font-size:14px;margin-top:2px}#pr-badge .prb-val span{opacity:.75}
 @keyframes prpop{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}20%{transform:translate(-50%,-50%) scale(1)}85%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-60%) scale(.95)}}
-#confetti{position:fixed;inset:0;width:100vw;height:100vh;z-index:79;pointer-events:none;display:none}#confetti.on{display:block}
+#confetti{position:fixed;inset:0;width:100%;height:100%;z-index:79;pointer-events:none;display:none}#confetti.on{display:block}
 @media (prefers-reduced-motion: reduce){#pr-badge.show{animation:none;opacity:1;transform:translate(-50%,-50%)}}
+
+/* iOS: fields under 16px make Safari zoom in on focus */
+#pjson{font-family:ui-monospace,monospace;font-size:12px}@supports (-webkit-touch-callout:none){#pjson{font-size:16px}}

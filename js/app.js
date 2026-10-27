@@ -6,7 +6,7 @@
   const view = $('#view'); const topbar = $('#topbar-inner');
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const uid = L.uid;
-  const APP_VERSION = '1.6.1';
+  const APP_VERSION = '1.6.2';
   const BUILTIN_VERSION = 4; // bump when a bundled program definition changes
   let pendingImport = null; // { results:[{program,warnings,ignored}], kind, pasteText }
   let pasteDraft = { text: '', name: '', repeat: 1 };
@@ -1451,7 +1451,7 @@
       case 'import-save': savePending(); break;
       case 'set-active': D.settings.activeProgramId = b.dataset.id; selectedWeek = null; await S.saveNow('settings'); toast('Active program set'); route(); break;
       case 'export-program': { const p = D.programs.find((x) => x.id === b.dataset.id); download(slug(p.name) + '.json', JSON.stringify(p, null, 2)); break; }
-      case 'edit-program': { const p = D.programs.find((x) => x.id === b.dataset.id); openSheet(`<h3>Edit program JSON</h3><textarea id="pjson" rows="18" style="font-family:ui-monospace,monospace;font-size:12px">${esc(JSON.stringify(p, null, 2))}</textarea><button class="btn primary block" style="margin-top:10px" data-act="save-pjson" data-id="${p.id}">Save</button>`); break; }
+      case 'edit-program': { const p = D.programs.find((x) => x.id === b.dataset.id); openSheet(`<h3>Edit program JSON</h3><textarea id="pjson" rows="18">${esc(JSON.stringify(p, null, 2))}</textarea><button class="btn primary block" style="margin-top:10px" data-act="save-pjson" data-id="${p.id}">Save</button>`); break; }
       case 'save-pjson': {
         try { const { program } = L.normalizeProgram(JSON.parse($('#pjson').value)); program.id = b.dataset.id; const i = D.programs.findIndex((x) => x.id === b.dataset.id); D.programs[i] = program; await S.saveNow('programs'); closeSheet(); toast('Program updated'); route(); } catch (e) { alert(e.message); }
         break;
@@ -1562,6 +1562,7 @@
   }
   async function checkUpdate(manual) {
     if (!swReg) { if (manual) toast('Offline app not active in this browser'); return; }
+    if (!manual && navigator.onLine === false) return; // nothing to fetch; Safari logs a failed sw.js load otherwise
     try { await swReg.update(); if (manual && !updateReady) setTimeout(() => { if (!updateReady) toast(`Up to date · version ${APP_VERSION}`); }, 1500); } catch (e) { if (manual) toast('Could not check (offline?)'); }
   }
   window.addEventListener('pagehide', () => S.flush());
@@ -1644,6 +1645,6 @@
   if ('serviceWorker' in navigator) {
     const hadController = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController) showUpdateReady(); });
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js', { scope: './' }).then((r) => { swReg = r; r.update().catch(() => {}); }).catch((e) => console.warn('SW failed', e)));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js', { scope: './' }).then((r) => { swReg = r; if (navigator.onLine !== false) r.update().catch(() => {}); }).catch((e) => console.warn('SW failed', e)));
   }
 })();

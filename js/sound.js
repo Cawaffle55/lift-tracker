@@ -16,11 +16,16 @@
   let unlocked = false;
   function unlock() {
     const c = ensure(); if (!c) return;
-    if (c.state !== 'running') c.resume().catch(() => {});
+    if (c.state !== 'running') c.resume().catch(() => {
+      // iOS can leave a context stuck ('interrupted') after a call, Siri or a long lock: start a fresh one on the next tap
+      if (ctx === c && c.state !== 'running') { try { c.close(); } catch (e) { /* */ } ctx = null; master = null; verbs = {}; unlocked = false; }
+    });
     if (!unlocked) {
       try { const b = c.createBuffer(1, 1, 22050); const s = c.createBufferSource(); s.buffer = b; s.connect(c.destination); s.start(0); unlocked = true; } catch (e) { /* */ }
     }
   }
+  // iOS 17+: mix with the user's music (and respect the silent switch) instead of pausing it
+  try { if (navigator.audioSession) navigator.audioSession.type = 'ambient'; } catch (e) { /* */ }
   ['pointerdown', 'touchend', 'click', 'keydown'].forEach((ev) => document.addEventListener(ev, unlock, { capture: true, passive: true }));
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && ctx && ctx.state !== 'running') ctx.resume().catch(() => {}); });
 
@@ -130,7 +135,7 @@
       api.buzzed = buzz(name); api.last = name; api.count++;
       if (!st.sound || !SOUNDS[name]) return 0;
       const c = ensure(); if (!c) return 0;
-      if (c.state === 'suspended') c.resume().catch(() => {});
+      if (c.state !== 'running') c.resume().catch(() => {}); // 'suspended', or iOS 'interrupted'
       master.gain.setValueAtTime(Math.max(0, Math.min(1, (st.volume ?? 70) / 100)) * 0.9, c.currentTime);
       return SOUNDS[name](c.currentTime + 0.01 + delay);
     },
